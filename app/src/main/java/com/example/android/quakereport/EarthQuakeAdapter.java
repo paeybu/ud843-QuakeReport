@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class EarthQuakeAdapter extends ArrayAdapter<Earthquake> {
@@ -33,12 +34,16 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake> {
         TextView dateTv = (TextView) listItemView.findViewById(R.id.dateTv);
         TextView timeTv = (TextView) listItemView.findViewById(R.id.timeTv);
 
-        magTv.setText(String.valueOf(earthQuake.getMagnitude()));
+        Double magnitude = earthQuake.getMagnitude();
+        DecimalFormat formatter = new DecimalFormat("0.0");
+        String magnitudeString = formatter.format(magnitude);
+
+        magTv.setText(magnitudeString);
         String place = earthQuake.getPlace();
         String[] parts = place.split("of");
         String offset= "";
         String location = "";
-        if (parts.length == 2) {
+        if (place.contains("of")) {
             offset = parts[0] + "of";
             location = parts[1].substring(1);
         } else {
