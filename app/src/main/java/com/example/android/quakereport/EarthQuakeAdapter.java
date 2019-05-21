@@ -33,7 +33,7 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake> {
 
         magTv.setText(String.valueOf(earthQuake.getMagnitude()));
         locTv.setText(earthQuake.getPlace());
-        dateTv.setText(""+ earthQuake.getTime());
+        dateTv.setText(earthQuake.getTime());
 
         return listItemView;
     }

@@ -1,15 +1,20 @@
 package com.example.android.quakereport;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 class Earthquake {
     private double mMagnitude;
     private String mPlace;
-    private int mTime;
+    private String mTimeToDisplay;
 
 
-    public Earthquake(double magnitude, String place, int time) {
+    public Earthquake(double magnitude, String place, long timeInMilli) {
         mMagnitude = magnitude;
         mPlace = place;
-        mTime = time;
+        Date date = new Date(timeInMilli);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM DD, yyyy");
+        mTimeToDisplay = dateFormat.format(date);
     }
 
     public double getMagnitude() {
@@ -20,7 +25,7 @@ class Earthquake {
         return mPlace;
     }
 
-    public int getTime() {
-        return mTime;
+    public String getTime() {
+        return mTimeToDisplay;
     }
 }
