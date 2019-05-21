@@ -28,12 +28,26 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake> {
         Earthquake earthQuake = getItem(position);
 
         TextView magTv = (TextView) listItemView.findViewById(R.id.magTv);
+        TextView offsetTv = (TextView) listItemView.findViewById(R.id.offsetTv);
         TextView locTv = (TextView) listItemView.findViewById(R.id.locTv);
         TextView dateTv = (TextView) listItemView.findViewById(R.id.dateTv);
         TextView timeTv = (TextView) listItemView.findViewById(R.id.timeTv);
 
         magTv.setText(String.valueOf(earthQuake.getMagnitude()));
-        locTv.setText(earthQuake.getPlace());
+        String place = earthQuake.getPlace();
+        String[] parts = place.split("of");
+        String offset= "";
+        String location = "";
+        if (parts.length == 2) {
+            offset = parts[0] + "of";
+            location = parts[1].substring(1);
+        } else {
+            offset = "Near the";
+            location = parts[0];
+        }
+
+        offsetTv.setText(offset);
+        locTv.setText(location);
         dateTv.setText(earthQuake.getDate());
         timeTv.setText(earthQuake.getTime());
 
