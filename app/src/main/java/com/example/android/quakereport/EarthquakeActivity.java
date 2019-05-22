@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,22 +39,25 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     private EarthquakeAdapter mAdapter;
     private ListView mEarthquakeListView;
+    private ProgressBar mProgressBar;
+    private TextView mEmptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
-        getLoaderManager().initLoader(0, null, this);
-
         // Find a reference to the {@link ListView} in the layout
         mEarthquakeListView = (ListView) findViewById(R.id.list);
-        TextView emptyView = (TextView) findViewById(R.id.empty_view);
+        mEmptyView = (TextView) findViewById(R.id.empty_view);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        getLoaderManager().initLoader(0, null, this);
+
         // Create a new array adapter with an empty array list of earthquakes
         mAdapter = new EarthquakeAdapter(getApplicationContext(), R.layout.list_item, new ArrayList<Earthquake>());
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
-        mEarthquakeListView.setEmptyView(emptyView);
+        mEarthquakeListView.setEmptyView(mEmptyView);
         mEarthquakeListView.setAdapter(mAdapter);
         mEarthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -69,12 +73,17 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle) {
+        mProgressBar.setVisibility(View.VISIBLE);
         return new EarthquakeLoader(this, USGS_REQUEST_URL);
     }
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
         //clear the adapter
+        mProgressBar.setVisibility(View.GONE);
+        //if load finished but still empty
+        mEmptyView.setText(getString(R.string.no_earthquakes));
+
         mAdapter.clear();
 
         // update with the new earthquakes list
