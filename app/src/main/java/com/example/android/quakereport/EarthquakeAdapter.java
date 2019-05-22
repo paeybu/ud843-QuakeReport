@@ -15,10 +15,10 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class EarthQuakeAdapter extends ArrayAdapter<Earthquake> {
-    private static final String LOG_TAG = EarthQuakeAdapter.class.getSimpleName();
+public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
+    private static final String LOG_TAG = EarthquakeAdapter.class.getSimpleName();
     private Context mContext;
-    public EarthQuakeAdapter(@NonNull Context context, int resource, @NonNull List<Earthquake> objects) {
+    public EarthquakeAdapter(@NonNull Context context, int resource, @NonNull List<Earthquake> objects) {
         super(context, resource, objects);
         mContext = context;
     }

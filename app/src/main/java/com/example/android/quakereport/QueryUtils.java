@@ -44,7 +44,7 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
         // call extract earthquakes with the jsonresponse to extract information
-        List<Earthquake> earthquakes = extractEarthquakes(jsonResponse);
+        List<Earthquake> earthquakes = extractFeaturesFromJson(jsonResponse);
         return earthquakes;
     }
 
@@ -111,7 +111,7 @@ public final class QueryUtils {
      * Return a list of {@link Earthquake} objects that has been built up from
      * parsing a JSON response.
      */
-    public static ArrayList<Earthquake> extractEarthquakes(String jsonResponse) {
+    public static ArrayList<Earthquake> extractFeaturesFromJson(String jsonResponse) {
 
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
