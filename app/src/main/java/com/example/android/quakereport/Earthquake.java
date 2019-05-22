@@ -7,9 +7,10 @@ class Earthquake {
     private double mMagnitude;
     private String mPlace;
     private String mDate, mTime;
+    private String mUrl;
 
 
-    public Earthquake(double magnitude, String place, long timeInMilli) {
+    public Earthquake(double magnitude, String place, long timeInMilli, String url) {
         mMagnitude = magnitude;
         mPlace = place;
         Date date = new Date(timeInMilli);
@@ -17,6 +18,7 @@ class Earthquake {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         mDate = dateFormat.format(date);
         mTime = timeFormat.format(date);
+        mUrl = url;
     }
 
     public double getMagnitude() {
@@ -33,5 +35,9 @@ class Earthquake {
 
     public String getDate() {
         return mDate;
+    }
+
+    public String getUrl() {
+        return mUrl;
     }
 }

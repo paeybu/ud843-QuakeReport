@@ -32,11 +32,11 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake> {
         }
         Earthquake currentEarthquake = getItem(position);
 
-        TextView magTv = (TextView) listItemView.findViewById(R.id.magTv);
-        TextView offsetTv = (TextView) listItemView.findViewById(R.id.offsetTv);
-        TextView locTv = (TextView) listItemView.findViewById(R.id.locTv);
-        TextView dateTv = (TextView) listItemView.findViewById(R.id.dateTv);
-        TextView timeTv = (TextView) listItemView.findViewById(R.id.timeTv);
+        TextView magTv = (TextView) listItemView.findViewById(R.id.magnitude);
+        TextView offsetTv = (TextView) listItemView.findViewById(R.id.location_offset);
+        TextView locTv = (TextView) listItemView.findViewById(R.id.primary_location);
+        TextView dateTv = (TextView) listItemView.findViewById(R.id.date);
+        TextView timeTv = (TextView) listItemView.findViewById(R.id.time);
 
         Double magnitude = currentEarthquake.getMagnitude();
         DecimalFormat formatter = new DecimalFormat("0.0");
