@@ -14,7 +14,7 @@ class Earthquake {
         mMagnitude = magnitude;
         mPlace = place;
         Date date = new Date(timeInMilli);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM DD, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         mDate = dateFormat.format(date);
         mTime = timeFormat.format(date);
